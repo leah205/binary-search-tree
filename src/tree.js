@@ -1,3 +1,6 @@
+import Node from "./node";
+import mergeSort from "./merge";
+
 class Tree {
   constructor(arr) {
     this.arr = arr;
@@ -185,54 +188,5 @@ class Tree {
     this.root = this.buildTree(this.inOrderCallback());
   }
 }
-class Node {
-  constructor(data = null) {
-    this.data = data;
-    this.left = null;
-    this.right = null;
-  }
-}
 
-const arr = [1, 7, 4, 23, 10, 9, 4, 3, 5, 7, 8, 67, 6345, 324];
-
-const tree = new Tree(arr);
-//tree.insert(67);
-tree.insert(50);
-tree.insert(9);
-tree.insert(30);
-tree.prettyPrint(tree.root);
-
-console.log(tree.depth(tree.find(9)));
-console.log(tree.isBalanced());
-tree.rebalance();
-tree.prettyPrint(tree.root);
-console.log(tree.isBalanced());
-
-//tree.prettyPrint(tree.find(3));
-/*console.log(
-  tree.postOrderCallback((node) => (node.data % 2 === 0 ? "even" : "odd"))
-);*/
-//console.log(tree.preOrderCallback());
-//console.log(tree.inOrderCallback());
-//console.log(tree.postOrderCallback());
-
-function mergeSort(arr) {
-  if (arr.length <= 1) {
-    return arr;
-  }
-  let halfLength = Math.ceil(arr.length / 2);
-  let left = mergeSort(arr.slice(0, halfLength));
-  let right = mergeSort(arr.slice(halfLength, arr.length));
-  let sorted = [];
-  while (left.length && right.length) {
-    if (left[0] < right[0]) {
-      sorted = sorted.concat(left.shift());
-    } else {
-      sorted = sorted.concat(right.shift());
-    }
-  }
-  sorted = sorted.concat(left);
-  sorted = sorted.concat(right);
-
-  return sorted;
-}
+export default Tree;
